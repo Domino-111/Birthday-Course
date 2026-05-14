@@ -39,15 +39,15 @@ public class ThirdPersonController : MonoBehaviour
         movementVector.Normalize();
 
         //Rotating player direction towards the movement vector, locking rotation forward if RMB is held. SLERP: sperical interpolation, use for rotation lerping
-        if (Input.GetMouseButton(1))
-        {
-            playerDirection = Vector3.Slerp(playerDirection, forwardFlat, 5 * Time.deltaTime);
-        }
+        //if (Input.GetMouseButton(1))
+        //{
+        //    playerDirection = Vector3.Slerp(playerDirection, forwardFlat, 5 * Time.deltaTime);
+        //}
 
-        else
-        {
-            playerDirection = Vector3.Slerp(playerDirection, movementVector.magnitude > 0 ? movementVector : playerDirection, 5 * Time.deltaTime);
-        }
+        //else
+        //{
+        playerDirection = Vector3.Slerp(playerDirection, movementVector.magnitude > 0 ? movementVector : playerDirection, 5 * Time.deltaTime);
+        //}
 
         modelMesh.rotation = Quaternion.LookRotation(playerDirection);
 
@@ -69,16 +69,16 @@ public class ThirdPersonController : MonoBehaviour
         }
 
         //Animation Updates
-        ani.SetBool("Walking?", movementVector.magnitude > 0);
+        ani.SetBool("Is Walking?", movementVector.magnitude > 0);
 
-        ani.SetBool("Running?", Input.GetKey(KeyCode.LeftShift));
+        ani.SetBool("Is Running?", Input.GetKey(KeyCode.LeftShift));
 
-        ani.SetBool("Locked?", Input.GetMouseButton(1));
+        //ani.SetBool("Locked?", Input.GetMouseButton(1));
 
-        ani.SetFloat("X", Input.GetAxis("Horizontal") * (Input.GetKey(KeyCode.LeftShift) ? 2 : 1));
-        ani.SetFloat("Z", Input.GetAxis("Vertical") * (Input.GetKey(KeyCode.LeftShift) ? 2 : 1));
+        //ani.SetFloat("X", Input.GetAxis("Horizontal") * (Input.GetKey(KeyCode.LeftShift) ? 2 : 1));
+        //ani.SetFloat("Z", Input.GetAxis("Vertical") * (Input.GetKey(KeyCode.LeftShift) ? 2 : 1));
 
-        ani.SetBool("Grounded?", grounded);
+        ani.SetBool("Grounded", grounded);
     }
 
     void FixedUpdate()
