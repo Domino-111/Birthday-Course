@@ -3,21 +3,27 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    // Establish variables
     public TMP_Text timerText, fallsText;
     public float time = 0f;
     public int falls;
-    public GameObject instructions;
+
+    public GameObject instructions, title;
+    public float speed;
+
     public bool isPlaying;
 
+    // Ensures values are set before game loads
     void Awake()
     {
         instructions.SetActive(false);
         isPlaying = false;
+        Time.timeScale = 0f;
     }
 
     void Start()
     {
-
+        
     }
 
     void Update()
@@ -39,9 +45,10 @@ public class GameManager : MonoBehaviour
         if (isPlaying == true)
         {
             time = Time.deltaTime;
+            timerText.text = "Time : " + time.ToString("#.00") + "s";
         }
 
-
+        fallsText.text = "Falls : " + falls;
     }
 
     // On UI button push bring up the instructions text
@@ -53,7 +60,8 @@ public class GameManager : MonoBehaviour
     // On UI button push begin the game
     public void StartGame()
     {
+        title.SetActive(false);
         isPlaying = true;
-
+        Time.timeScale = 1f;
     }
 }

@@ -13,14 +13,14 @@ public class CameraPivot : MonoBehaviour
 
     void Update()
     {
-        //Rotate our pivot point globally on y rotation and locally on x rotation. Stops any rolling rotations
+        // Rotate our pivot point globally on y rotation and locally on x rotation. Stops any rolling rotations
         transform.Rotate(0, Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime, 0, Space.World);
         transform.Rotate(-Input.GetAxis("Mouse Y") * sensitivity * Time.deltaTime, 0, 0, Space.Self);
 
-        //Clamp the current x rotation to min and max clamp
+        // Clamp the current x rotation to min and max clamp
         float xRot = transform.eulerAngles.x;
 
-        //Ensure rotation is set to a -180, 180 range instead of 0, 360
+        // Ensure rotation is set to a -180, 180 range instead of 0, 360
         if (xRot > 180)
         {
             xRot -= 360;

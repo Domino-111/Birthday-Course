@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Tower
+  m_Name: Dynamic Platform
   m_Shader: {fileID: 4800000, guid: 14f1aa298892b68479b5ecfb169a024f, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -32,9 +32,9 @@ Material:
     - _SpecularFalloff: 0
     - _SpecularSize: 0
     - _StepAmount: 5
-    - _StepWidth: 0.332
+    - _StepWidth: 0.25
     m_Colors:
-    - _Color: {r: 0, g: 0.5426016, b: 1, a: 1}
+    - _Color: {r: 1, g: 0.76429033, b: 0, a: 1}
     - _Emission: {r: 0, g: 0, b: 0, a: 1}
     - _ShadowTint: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _Specular: {r: 1, g: 1, b: 1, a: 1}

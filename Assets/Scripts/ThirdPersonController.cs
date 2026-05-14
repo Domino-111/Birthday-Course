@@ -27,14 +27,14 @@ public class ThirdPersonController : MonoBehaviour
 
     void Update()
     {
-        //Perform a box cast to detect if we're grounded
+        // Perform a box cast to detect if we're grounded
         grounded = Physics.BoxCast(transform.position + Vector3.up, Vector3.one * 0.5f, Vector3.down, modelMesh.rotation, 0.7f);
 
-        //Flattened versions of the Camera's direction. Removing their y-axis from play
+        // Flattened versions of the Camera's direction. Removing their y-axis from play
         Vector3 forwardFlat = new Vector3(Camera.main.transform.forward.x, 0, Camera.main.transform.forward.z).normalized;
         Vector3 sideFlat = new Vector3(Camera.main.transform.right.x, 0, Camera.main.transform.right.z).normalized;
 
-        //Calculation of movement using WASD. Normalized to avoid inappropriate speeds (diagonals)
+        // Calculation of movement using WASD. Normalized to avoid inappropriate speeds (diagonals)
         movementVector = (forwardFlat * Input.GetAxis("Vertical")) + (sideFlat * Input.GetAxis("Horizontal"));
         movementVector.Normalize();
 
@@ -51,13 +51,13 @@ public class ThirdPersonController : MonoBehaviour
 
         modelMesh.rotation = Quaternion.LookRotation(playerDirection);
 
-        //Jumping if SPACE pressed AND we're grounded
+        // Jumping if SPACE pressed AND we're grounded
         if (Input.GetKeyDown(KeyCode.Space) && grounded)
         {
             rb.AddForce(0, jumpForce, 0, ForceMode.Impulse);
         }
 
-        //Lerping of SPEED towards 0, walkspeed and runspeed, given condition. MOVE TOWARDS: lerping with a set step
+        // Lerping of SPEED towards 0, walkspeed and runspeed, given condition. MOVE TOWARDS: lerping with a set step
         if (movementVector.magnitude > 0)
         {
             speed = Mathf.MoveTowards(speed, Input.GetKey(KeyCode.LeftShift) ? runSpeed : walkSpeed, 2 * Time.deltaTime);
@@ -68,7 +68,7 @@ public class ThirdPersonController : MonoBehaviour
             speed = Mathf.MoveTowards(speed, 0, 5 * Time.deltaTime);
         }
 
-        //Animation Updates
+        // Animation Updates
         ani.SetBool("Is Walking?", movementVector.magnitude > 0);
 
         ani.SetBool("Is Running?", Input.GetKey(KeyCode.LeftShift));

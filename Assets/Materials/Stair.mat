@@ -31,7 +31,7 @@ Material:
     m_Floats:
     - _SpecularFalloff: 0
     - _SpecularSize: 0
-    - _StepAmount: 4
+    - _StepAmount: 5
     - _StepWidth: 0.25
     m_Colors:
     - _Color: {r: 0.6210747, g: 0, b: 1, a: 1}

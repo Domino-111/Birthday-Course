@@ -2,13 +2,15 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
-    void Start()
-    {
-        
-    }
+    public GameObject stairs;
+    public GameObject under, surface;
+    public float speed;
 
-    void Update()
+    public void OnCollisionEnter(Collision collision)
     {
-        
+        if (collision.transform.CompareTag("Player"))
+        {
+            Instantiate(stairs, transform, under);
+        }
     }
 }
