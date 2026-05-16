@@ -34,7 +34,7 @@ Material:
     - _StepAmount: 5
     - _StepWidth: 0.25
     m_Colors:
-    - _Color: {r: 0.6210747, g: 0, b: 1, a: 1}
+    - _Color: {r: 1, g: 0.09218602, b: 0, a: 1}
     - _Emission: {r: 0, g: 0, b: 0, a: 1}
     - _ShadowTint: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _Specular: {r: 1, g: 1, b: 1, a: 1}

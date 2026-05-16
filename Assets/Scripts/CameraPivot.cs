@@ -4,11 +4,11 @@ public class CameraPivot : MonoBehaviour
 {
     public float sensitivity = 120;
     public float minClamp = -50, maxClamp = 50;
+    public GameManager gm;
 
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        
     }
 
     void Update()
@@ -26,7 +26,15 @@ public class CameraPivot : MonoBehaviour
             xRot -= 360;
         }
 
+        // Limit rotation between 2 values we set
         xRot = Mathf.Clamp(xRot, minClamp, maxClamp);
         transform.eulerAngles = new Vector3(xRot, transform.eulerAngles.y, 0);
+
+        // Lock cursor only after the game has started playing
+        if (gm.isPlaying == true)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
     }
 }

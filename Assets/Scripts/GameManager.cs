@@ -1,5 +1,6 @@
-using UnityEngine;
+using System;
 using TMPro;
+using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class GameManager : MonoBehaviour
     public float time = 0f;
     public int falls;
 
-    public GameObject instructions, title;
+    public GameObject instructions, title, playButton, instructionsButton, timer, fallsCounter;
     public float speed;
 
     public bool isPlaying;
@@ -19,21 +20,13 @@ public class GameManager : MonoBehaviour
         instructions.SetActive(false);
         isPlaying = false;
         Time.timeScale = 0f;
-    }
 
-    void Start()
-    {
-        
+        timer.SetActive(false);
+        fallsCounter.SetActive(false);
     }
 
     void Update()
     {
-        // Close the instructions to return to main menu
-        if (Input.GetKeyDown(KeyCode.Tab) && isPlaying == false)
-        {
-            instructions.SetActive(false);
-        }
-
         // Close the game back to desktop
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -44,11 +37,16 @@ public class GameManager : MonoBehaviour
         // Start timer once the game begins
         if (isPlaying == true)
         {
-            time = Time.deltaTime;
-            timerText.text = "Time : " + time.ToString("#.00") + "s";
+            Timer();
         }
 
         fallsText.text = "Falls : " + falls;
+
+        // Press enter to start the game
+        if (Input.GetKeyDown(KeyCode.Return) && isPlaying == false)
+        {
+            StartGame();
+        }
     }
 
     // On UI button push bring up the instructions text
@@ -57,11 +55,35 @@ public class GameManager : MonoBehaviour
         instructions.SetActive(true);
     }
 
-    // On UI button push begin the game
+    // On UI button push close the instructions
+    public void InstructionsOff()
+    {
+        instructions.SetActive(false);
+    }
+
+    // Begin the game
     public void StartGame()
     {
-        title.SetActive(false);
+        title.SetActive(false); // Hide the title when the game begins
+
         isPlaying = true;
+
         Time.timeScale = 1f;
+
+        // Hide the buttons from the player when the game begins
+        playButton.SetActive(false);
+        instructionsButton.SetActive(false);
+
+        // Show score trackers
+        timer.SetActive(true);
+        fallsCounter.SetActive(true);
+    }
+
+    // Time how long the player has been playing
+    private void Timer()
+    {
+        time = Time.deltaTime;
+        TimeSpan timeSpan = TimeSpan.FromSeconds(time);
+        timerText.text = "Time : " + timeSpan + "s";
     }
 }
