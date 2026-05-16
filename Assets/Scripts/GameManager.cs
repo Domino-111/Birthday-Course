@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour
     public int falls;
 
     public GameObject instructions, title, playButton, instructionsButton, timer, fallsCounter;
-    public float speed;
 
     public bool isPlaying;
 
@@ -82,8 +81,7 @@ public class GameManager : MonoBehaviour
     // Time how long the player has been playing
     private void Timer()
     {
-        time = Time.deltaTime;
-        TimeSpan timeSpan = TimeSpan.FromSeconds(time);
-        timerText.text = "Time : " + timeSpan + "s";
+        time += Time.deltaTime;
+        timerText.text = "Time : " + time.ToString(@"mm\:ss") + "s";
     }
 }
